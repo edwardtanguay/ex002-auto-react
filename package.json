@@ -4,10 +4,11 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite --port 3010 --open",
-		"build": "tsc && vite build",
-		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-		"preview": "vite preview",
+		"dev": "vite --port 3557 --open",
+		"build": "tsc --build --clean && vite build",
+		"start": "vite serve --host --port 3557",
+		"setup": "npm i && npm run build && pm2 start --name ex002-auto-react npm -- start --update-env --time && pm2 save",
+		"deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart ex002-auto-react --update-env --time && pm2 save",
 		"pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
 	},
 	"dependencies": {
